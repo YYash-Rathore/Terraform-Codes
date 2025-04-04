@@ -44,10 +44,10 @@ resource "aws_security_group" "my_security_group" {
 resource aws_instance my_instance {
     key_name = aws_key_pair.my_key.key_name
     security_groups = [aws_security_group.my_security_group.name]
-    instance_type = "t2.micro"
-    ami = "ami-0df368112825f8d8f"
+    instance_type = var.ec2_instance_type
+    ami = var.ec2_ami_id
     root_block_device {
-        volume_size = 8
+        volume_size = var.ec2_root_volume_size
         volume_type = "gp3"
         delete_on_termination = true
     }
